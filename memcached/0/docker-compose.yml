@@ -1,0 +1,11 @@
+version: '2'
+services:
+  memcached-lb:
+    image: rancher/lb-service-haproxy
+    ports:
+      - ${lb_port}
+
+  memcached:
+    image: memcached:1-alpine
+    tty: true
+    stdin_open: true

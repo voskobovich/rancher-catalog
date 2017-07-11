@@ -1,0 +1,39 @@
+.catalog:
+  name: "Memcached"
+  version: "v0.0.1"
+  description: "MemcacheD"
+  uuid: memcached-0
+  minimum_rancher_version: v0.9.0
+  questions:
+    - variable: lb_port
+      description: "Port to access Memcached from external services"
+      label: "Memcached LB Port"
+      required: true
+      default: 11211
+      type: "int"
+      
+version: '2'
+services:
+  memcached-lb:
+    scale: 1
+    lb_config:
+      certs: []
+      port_rules:
+      - protocol: tcp
+        service: memcached
+        source_port: ${lb_port}
+        target_port: 11211
+    health_check:
+      port: 42
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+  memcached:
+    scale: 1
+    health_check:
+      port: 11211
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000

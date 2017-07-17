@@ -1,0 +1,5 @@
+name: Redis
+description: |
+  Redis — a distributed memory object caching system
+version: v0.0.1
+category: Database

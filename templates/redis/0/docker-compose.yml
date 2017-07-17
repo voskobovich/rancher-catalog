@@ -1,0 +1,11 @@
+version: '2'
+services:
+  redis-lb:
+    image: rancher/lb-service-haproxy
+    ports:
+      - ${lb_port}
+
+  redis:
+    image: redis:4-alpine
+    tty: true
+    stdin_open: true

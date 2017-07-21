@@ -1,0 +1,11 @@
+version: '2'
+services:
+  mongodb-lb:
+    image: rancher/lb-service-haproxy
+    ports:
+      - ${lb_port}
+
+  mongodb:
+    image: mongodb:3
+    tty: true
+    stdin_open: true

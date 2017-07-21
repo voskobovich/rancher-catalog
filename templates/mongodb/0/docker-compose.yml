@@ -6,6 +6,6 @@ services:
       - ${lb_port}
 
   mongodb:
-    image: mongodb:3
+    image: mongo:3
     tty: true
     stdin_open: true

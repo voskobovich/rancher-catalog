@@ -5,7 +5,18 @@ services:
     ports:
       - ${lb_port}
 
+  redis-data:
+    image: busybox
+    labels:
+      io.rancher.container.start_once: true
+    volumes:
+      - /data
+
   redis:
     image: redis:4-alpine
     tty: true
     stdin_open: true
+    labels:
+      io.rancher.sidekicks: redis-data
+    volumes_from:
+      - redis-data
